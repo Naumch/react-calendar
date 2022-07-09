@@ -24,13 +24,26 @@ button {
   padding: 0;
 }
 
+.wrap {
+  display: flex;
+	justify-content: center;
+	max-width: 1200px;
+	margin: 60px auto;
+}
+
+@media (max-width: 620px) {
+  .wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .btn {
 	align-self: end;
 	padding: 10px 30px;
 	margin: 10px 0 20px; 
 	border-radius: 4px;
 	font-size: 14px;
-  letter-spacing: 1px;
 	color: #fff;
 	background-color: #3775dd;
   transition: .5s;
@@ -47,16 +60,98 @@ button {
   transition: .3s box-shadow;
 	outline: none;
   transition: .5s;
+  cursor: pointer;
 }
 
-.input::placeholder {
-  letter-spacing: 1px;
+.calendar-wrapper {
+  max-width: 280px;
+  border-bottom: 1px solid #b3b3b3;
 }
 
-.input:hover {
-  border: 2px solid #9facba;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
-.input:focus {
-  border: 2px solid #9facba;
+.calendar-header_top {
+  height: 50px;
+  border-bottom: 1px solid #b3b3b3;
+}
+
+.calendar-header_button-today {
+  font-size: 1.5rem;
+  color: #1f1f1f;
+  margin-left: 0.5rem;
+}
+
+.calendar-header_bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.calendar-header_arrow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 80px;
+}
+
+.calendar-header_day-name {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-wrapper {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.current-day {
+  background-color: #e7ebee;
+}
+
+.selected-day {
+  background-color: #9facba;
+}
+
+.notes_wrapper {
+  width: 40%;
+  margin-left: 50px;
+}
+
+@media (max-width: 610px) {
+  .notes_wrapper {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .notes_wrapper {
+    width: 80%;
+    margin-top: 20px;
+  }
+}
+
+.notes_field {
+  display: flex;
+  flex-direction: column;
+}
+
+.notes_item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #9facba;
+  width: 100%;
+  padding: 10px;
+  background-color: #f8f9fb;
 }

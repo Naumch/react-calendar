@@ -1,16 +1,6 @@
 import moment from 'moment';
 import styled from 'styled-components';
-import CalendarGridHeader from './CalendarGridHeader';
-
-const CalendarWrapper = styled.div`
-  max-width: 280px;
-  border-bottom: 1px solid #b3b3b3;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-`;
+import CalendarHeader from './CalendarHeader';
 
 const Button = styled.button`
   width: 2.5rem;
@@ -25,28 +15,6 @@ const Button = styled.button`
     font-weight: 700;
     color: green;
   }
-`;
-
-const CurrentDay = styled.div`
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background-color: #e7ebee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-`;
-
-const SelectedDay = styled.div`
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background-color: #9facba;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
 `;
 
 function CalendarGrid({ setEditUnix, setObj, obj, days, editUnix, notes,       
@@ -70,22 +38,22 @@ function CalendarGrid({ setEditUnix, setObj, obj, days, editUnix, notes,
       }}
 		> 
       {!isCurrentDay(day) && !isSelectedDay(day) && day.format('D')}
-      {isCurrentDay(day) && !isSelectedDay(day) && <CurrentDay>{day.format('D')}</CurrentDay>}
-      {isSelectedDay(day) && <SelectedDay>{day.format('D')}</SelectedDay>}   
+      {isCurrentDay(day) && !isSelectedDay(day) && <div className='day-wrapper current-day'>{day.format('D')}</div>}
+      {isSelectedDay(day) && <div className='day-wrapper selected-day'>{day.format('D')}</div>}   
     </Button>
   }); 
 
-  return <CalendarWrapper>
-    <CalendarGridHeader 
+  return <div className='calendar-wrapper'>
+    <CalendarHeader 
       prevHandler={prevHandler}
       todayHandler={todayHandler}
       nextHandler={nextHandler}
       startingPoint={startingPoint}
     />
-    <Grid>
+    <div className='grid'>
       {result}
-    </Grid>
-  </CalendarWrapper>
+    </div>
+  </div>
 }
 
 export default CalendarGrid;

@@ -1,35 +1,9 @@
-import styled from "styled-components";
-
-const NotesWrap = styled.div`
-  width: 40%;
-  margin-left: 50px;
-  @media (max-width: 610px) {
-    margin-left: 10px;
-  }
-  @media (max-width: 620px) {
-    width: 80%;
-    margin-top: 20px;
-  }
-`;
-
-const Field = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Item = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #9facba;
-  width: 100%;
-  padding: 10px;
-  background-color: #f8f9fb;
-`;
+import React from "react";
 
 function Notes({ editUnix, notes, setEditId, getValue, changeItem, saveItem, remItem }) {
 
-  return <NotesWrap>
-    <Field>
+  return <div className="notes_wrapper">
+    <div className="notes_field">
       <input 
         placeholder="Добавить напоминание"
         value={getValue('text')}
@@ -42,23 +16,25 @@ function Notes({ editUnix, notes, setEditId, getValue, changeItem, saveItem, rem
       >
         Сохранить
       </button>
-    </Field>
+    </div>
     <div>
       {notes.map(note => {
         if (note.unix === editUnix) {
-          return <Item 
-            key={note.id} 
-            onClick={() => setEditId(note.id)}
-          >
-            <span>{note.text}</span>
-            <button onClick={() => remItem(note.id)}>&#128937;</button>
-          </Item>;
+          return (
+            <div className="notes_item" 
+              key={note.id} 
+              onClick={() => setEditId(note.id)}
+            >
+              <span>{note.text}</span>
+              <button onClick={() => remItem(note.id)}>&#128937;</button>
+            </div>
+          )
         } else {
           return null;
         }
       })}
     </div>
-  </NotesWrap>;
+  </div>;
 }
 
 

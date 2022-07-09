@@ -3,22 +3,18 @@ import CalendarGrid from './CalendarGrid';
 import Notes from './Notes';
 import { nanoid } from 'nanoid';
 import moment from 'moment';
-import styled from 'styled-components';
 import localization from 'moment/locale/ru';
-
-const Wrap = styled.div`
-	display: flex;
-	justify-content: center;
-	max-width: 1200px;
-	margin: 60px auto;
-	@media (max-width: 620px) {
-		flex-direction: column;
-		align-items: center;
-	}
-`;
 
 moment.updateLocale('en', {week: {dow: 1}});
 moment.updateLocale('ru', localization);
+
+const initNotes = [
+	{unix: 1657227600, id: nanoid(), text: "25 современных шедевров маслом, которые надоедят к следующему уикенду"},
+	{unix: 1657227600, id: nanoid(), text: "100 самых великолепных деревьев, о которых узнала наука в последнее время"},
+	{unix: 1656968400, id: nanoid(), text: "100500 чертовски милых записок от людей, которые меняют сознание"},
+	{unix: 1656536400, id: nanoid(), text: "Сорок самых ярких участников «Евровидения», для которых природа не пожалела красок"},
+	{unix: 1652994000, id: nanoid(), text: "105 крутых способов занять детей, которым действительно можно верить"}
+];
 
 function App() {
   const [startingPoint, setStartingPoint] = useState(moment());
@@ -33,14 +29,6 @@ function App() {
 	
 	const [editUnix, setEditUnix] = useState(moment().startOf('day').unix());
 
-	const initNotes = [
-		{unix: 1657227600, id: nanoid(), text: "25 современных шедевров маслом, которые надоедят к следующему уикенду"},
-		{unix: 1657227600, id: nanoid(), text: "100 самых великолепных деревьев, о которых узнала наука в последнее время"},
-		{unix: 1656968400, id: nanoid(), text: "100500 чертовски милых записок от людей, которые меняют сознание"},
-		{unix: 1656536400, id: nanoid(), text: "Сорок самых ярких участников «Евровидения», для которых природа не пожалела красок"},
-		{unix: 1652994000, id: nanoid(), text: "105 крутых способов занять детей, которым действительно можно верить"}
-	];
-
   const [notes, setNotes] = useState(initNotes);
   const [obj, setObj] = useState(getInitObj()); 
 	const [editId, setEditId] = useState(null);
@@ -52,7 +40,6 @@ function App() {
 			text: ''
 		};
 	};
-	window.moment = moment;
 
 	function remItem(id) {
     setNotes(notes.filter(note => note.id !== id));
@@ -86,7 +73,7 @@ function App() {
 		}
 	}
   
-  return <Wrap>
+  return <div className='wrap'>
     <CalendarGrid 
 			notes={notes}
       setEditUnix={setEditUnix}
@@ -108,7 +95,7 @@ function App() {
       saveItem={saveItem}
 			remItem={remItem}
     />
-  </Wrap>; 
+  </div>; 
 }
 
 export default App;
