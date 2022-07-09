@@ -1,6 +1,9 @@
 import moment from "moment";
 
-function CalendarHeader({ prevHandler, todayHandler, nextHandler, startingPoint }) {
+function CalendarHeader({ startingPoint, setStartingPoint }) {
+  const prevHandler = () => setStartingPoint(prev => prev.clone().subtract(1, 'month'));
+  const todayHandler = () => setStartingPoint(moment());
+  const nextHandler = () => setStartingPoint(next => next.clone().add(1, 'month'));
 
   const dayNames = [...Array(7)].map((_, i) => {
     return (

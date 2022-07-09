@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CalendarGrid from './CalendarGrid';
+import Calendar from './Calendar';
 import Notes from './Notes';
 import { nanoid } from 'nanoid';
 import moment from 'moment';
@@ -17,23 +17,12 @@ const initNotes = [
 ];
 
 function App() {
-  const [startingPoint, setStartingPoint] = useState(moment());
-  const firstDay =  startingPoint.clone().startOf('month').startOf('week');
-	const totalDays = 42;
-  const day = firstDay.clone().subtract(1, 'day');
-  const days = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
-
-	const prevHandler = () => setStartingPoint(prev => prev.clone().subtract(1, 'month'));
-  const todayHandler = () => setStartingPoint(moment());
-  const nextHandler = () => setStartingPoint(next => next.clone().add(1, 'month'));
-	
 	const [editUnix, setEditUnix] = useState(moment().startOf('day').unix());
-
   const [notes, setNotes] = useState(initNotes);
-  const [obj, setObj] = useState(getInitObj()); 
+	const [obj, setObj] = useState(getInitObj()); 
 	const [editId, setEditId] = useState(null);
-	
-  function getInitObj() {
+
+	function getInitObj() {
 		return {
       unix: editUnix,
 			id: nanoid(),
@@ -74,17 +63,12 @@ function App() {
 	}
   
   return <div className='wrap'>
-    <CalendarGrid 
+    <Calendar 
 			notes={notes}
-      setEditUnix={setEditUnix}
-      setObj={setObj}
-      obj={obj}
-			startingPoint={startingPoint}
-			prevHandler={prevHandler}
-			todayHandler={todayHandler}
-			nextHandler={nextHandler}
-			days={days}
+			obj={obj}
+			setObj={setObj}
 			editUnix={editUnix}
+      setEditUnix={setEditUnix}
     />
     <Notes 
       editUnix={editUnix} 

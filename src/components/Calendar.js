@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 import CalendarHeader from './CalendarHeader';
@@ -17,9 +18,12 @@ const Button = styled.button`
   }
 `;
 
-function CalendarGrid({ setEditUnix, setObj, obj, days, editUnix, notes,       
-                        prevHandler, todayHandler, nextHandler, startingPoint }) {
-  
+function Calendar({ notes, obj, setObj, editUnix, setEditUnix }) {
+  const [startingPoint, setStartingPoint] = useState(moment());
+  const firstDay =  startingPoint.clone().startOf('month').startOf('week');
+  const day = firstDay.clone().subtract(1, 'day');
+  const days = [...Array(42)].map(() => day.add(1, 'day').clone());
+
   const isSelectedMonth = (day) => startingPoint.isSame(day, 'month');
   const isCurrentDay = (day) => moment().isSame(day, 'day');
   const isSelectedDay = (day) => day.unix() === editUnix;
@@ -45,10 +49,8 @@ function CalendarGrid({ setEditUnix, setObj, obj, days, editUnix, notes,
 
   return <div className='calendar-wrapper'>
     <CalendarHeader 
-      prevHandler={prevHandler}
-      todayHandler={todayHandler}
-      nextHandler={nextHandler}
       startingPoint={startingPoint}
+      setStartingPoint={setStartingPoint}
     />
     <div className='grid'>
       {result}
@@ -56,4 +58,4 @@ function CalendarGrid({ setEditUnix, setObj, obj, days, editUnix, notes,
   </div>
 }
 
-export default CalendarGrid;
+export default Calendar;
