@@ -33,7 +33,13 @@ function App() {
 	
 	const [editUnix, setEditUnix] = useState(moment().startOf('day').unix());
 
-	const initNotes = [];
+	const initNotes = [
+		{unix: 1657227600, id: nanoid(), text: "25 современных шедевров маслом, которые надоедят к следующему уикенду"},
+		{unix: 1657227600, id: nanoid(), text: "100 самых великолепных деревьев, о которых узнала наука в последнее время"},
+		{unix: 1656968400, id: nanoid(), text: "100500 чертовски милых записок от людей, которые меняют сознание"},
+		{unix: 1656536400, id: nanoid(), text: "Сорок самых ярких участников «Евровидения», для которых природа не пожалела красок"},
+		{unix: 1652994000, id: nanoid(), text: "105 крутых способов занять детей, которым действительно можно верить"}
+	];
 
   const [notes, setNotes] = useState(initNotes);
   const [obj, setObj] = useState(getInitObj()); 
@@ -46,6 +52,7 @@ function App() {
 			text: ''
 		};
 	};
+	window.moment = moment;
 
 	function remItem(id) {
     setNotes(notes.filter(note => note.id !== id));
