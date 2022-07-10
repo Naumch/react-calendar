@@ -32,30 +32,34 @@ function Calendar({ notes, obj, setObj, editUnix, setEditUnix }) {
   };
 
   const result = days.map(day => {
-    return <Button 
-			key={day.unix()}
-      thereIsANote={thereIsANote(day, notes)}
-      isSelectedMonth={isSelectedMonth(day)}
-			onClick={() => {
-        setEditUnix(day.unix());
-        setObj({...obj, unix: day.unix()});
-      }}
-		> 
-      {!isCurrentDay(day) && !isSelectedDay(day) && day.format('D')}
-      {isCurrentDay(day) && !isSelectedDay(day) && <div className='day-wrapper current-day'>{day.format('D')}</div>}
-      {isSelectedDay(day) && <div className='day-wrapper selected-day'>{day.format('D')}</div>}   
-    </Button>
+    return (
+      <Button 
+        key={day.unix()}
+        thereIsANote={thereIsANote(day, notes)}
+        isSelectedMonth={isSelectedMonth(day)}
+        onClick={() => {
+          setEditUnix(day.unix());
+          setObj({...obj, unix: day.unix()});
+        }}
+      > 
+        {!isCurrentDay(day) && !isSelectedDay(day) && day.format('D')}
+        {isCurrentDay(day) && !isSelectedDay(day) && <div className='grid__day-wrapper grid__current-day'>{day.format('D')}</div>}
+        {isSelectedDay(day) && <div className='grid__day-wrapper grid__selected-day'>{day.format('D')}</div>}   
+      </Button>
+    )
   }); 
 
-  return <div className='calendar-wrapper'>
-    <CalendarHeader 
-      startingPoint={startingPoint}
-      setStartingPoint={setStartingPoint}
-    />
-    <div className='grid'>
-      {result}
+  return (
+    <div className='calendar-wrapper'>
+      <CalendarHeader 
+        startingPoint={startingPoint}
+        setStartingPoint={setStartingPoint}
+      />
+      <div className='grid'>
+        {result}
+      </div>
     </div>
-  </div>
+  )
 }
 
 export default Calendar;

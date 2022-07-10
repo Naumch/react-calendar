@@ -17,10 +17,10 @@ const initNotes = [
 ];
 
 function App() {
-	const [editUnix, setEditUnix] = useState(moment().startOf('day').unix());
   const [notes, setNotes] = useState(initNotes);
-	const [obj, setObj] = useState(getInitObj()); 
 	const [editId, setEditId] = useState(null);
+	const [editUnix, setEditUnix] = useState(moment().startOf('day').unix());
+	const [obj, setObj] = useState(getInitObj()); 
 
 	function getInitObj() {
 		return {
@@ -29,38 +29,6 @@ function App() {
 			text: ''
 		};
 	};
-
-	function remItem(id) {
-    setNotes(notes.filter(note => note.id !== id));
-  }
-
-  function getValue(prop) {
-		if (editId) {
-			return notes.reduce((res, note) => 
-      note.id === editId ? note[prop] : res, ''); 
-		} else {
-			return obj[prop];
-		}
-	}
-	
-	function changeItem(text, event) {
-		if (editId) {
-			setNotes(notes.map(note =>
-				note.id === editId ? {...note, [text]: event.target.value} : note 
-			));
-		} else {
-			setObj({...obj, [text]: event.target.value});
-		}
-	}
-	
-	function saveItem() {
-		if (editId) {
-			setEditId(null);
-		} else if (!editId && editUnix) {
-			setNotes([...notes, obj]);
-			setObj(getInitObj());
-		}
-	}
   
   return <div className='wrap'>
     <Calendar 
@@ -73,11 +41,12 @@ function App() {
     <Notes 
       editUnix={editUnix} 
       notes={notes} 
+			setNotes={setNotes}
+			editId={editId}
       setEditId={setEditId}
-      getValue={getValue}
-      changeItem={changeItem}
-      saveItem={saveItem}
-			remItem={remItem}
+			obj={obj}
+			setObj={setObj}
+			getInitObj={getInitObj}
     />
   </div>; 
 }

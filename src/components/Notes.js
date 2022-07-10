@@ -1,9 +1,41 @@
 import React from "react";
 
-function Notes({ editUnix, notes, setEditId, getValue, changeItem, saveItem, remItem }) {
+function Notes({ editUnix, notes, setNotes, editId, setEditId, obj, setObj, getInitObj }) {
 
-  return <div className="notes_wrapper">
-    <div className="notes_field">
+  function remItem(id) {
+    setNotes(notes.filter(note => note.id !== id));
+  }
+
+  function getValue(prop) {
+		if (editId) {
+			return notes.reduce((res, note) => 
+      note.id === editId ? note[prop] : res, ''); 
+		} else {
+			return obj[prop];
+		}
+	}
+	
+	function changeItem(text, event) {
+		if (editId) {
+			setNotes(notes.map(note =>
+				note.id === editId ? {...note, [text]: event.target.value} : note 
+			));
+		} else {
+			setObj({...obj, [text]: event.target.value});
+		}
+	}
+	
+	function saveItem() {
+		if (editId) {
+			setEditId(null);
+		} else if (!editId && editUnix) {
+			setNotes([...notes, obj]);
+			setObj(getInitObj());
+		}
+	}
+
+  return <div className="notes-wrapper">
+    <div className="notes__field">
       <input 
         placeholder="Добавить напоминание"
         value={getValue('text')}
@@ -21,7 +53,7 @@ function Notes({ editUnix, notes, setEditId, getValue, changeItem, saveItem, rem
       {notes.map(note => {
         if (note.unix === editUnix) {
           return (
-            <div className="notes_item" 
+            <div className="notes__item" 
               key={note.id} 
               onClick={() => setEditId(note.id)}
             >

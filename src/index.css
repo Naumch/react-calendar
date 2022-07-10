@@ -73,31 +73,31 @@ button {
   grid-template-columns: repeat(7, 1fr);
 }
 
-.calendar-header_top {
+.calendar-header__top {
   height: 50px;
   border-bottom: 1px solid #b3b3b3;
 }
 
-.calendar-header_button-today {
+.calendar-header__button-today {
   font-size: 1.5rem;
   color: #1f1f1f;
   margin-left: 0.5rem;
 }
 
-.calendar-header_bottom {
+.calendar-header__bottom {
   display: flex;
   justify-content: space-between;
   margin-left: 0.55rem;
   margin-top: 0.5rem;
 }
 
-.calendar-header_arrow {
+.calendar-header__arrow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 80px;
 }
 
-.calendar-header_day-name {
+.calendar-header__day-name {
   width: 2.5rem;
   height: 2.5rem;
   color: #1f1f1f;
@@ -106,7 +106,7 @@ button {
   align-items: center;
 }
 
-.day-wrapper {
+.grid__day-wrapper {
   width: 80%;
   height: 80%;
   border-radius: 50%;
@@ -116,38 +116,38 @@ button {
   margin: auto;
 }
 
-.current-day {
+.grid__current-day {
   background-color: #e7ebee;
 }
 
-.selected-day {
+.grid__selected-day {
   background-color: #9facba;
 }
 
-.notes_wrapper {
+.notes-wrapper {
   width: 40%;
   margin-left: 50px;
 }
 
 @media (max-width: 610px) {
-  .notes_wrapper {
+  .notes-wrapper {
     margin-left: 10px;
   }
 }
 
 @media (max-width: 620px) {
-  .notes_wrapper {
+  .notes-wrapper {
     width: 80%;
     margin-top: 20px;
   }
 }
 
-.notes_field {
+.notes__field {
   display: flex;
   flex-direction: column;
 }
 
-.notes_item {
+.notes__item {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #9facba;
