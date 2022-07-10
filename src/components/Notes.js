@@ -35,31 +35,29 @@ function Notes({ editUnix, notes, setNotes, editId, setEditId, obj, setObj, getI
 		}
 	}
 
-  return <div className="notes-wrapper">
-    <div className="notes__field">
-      <input 
-        placeholder="Добавить напоминание"
-        value={getValue('text')}
-        onChange={event => changeItem('text', event)}
-        className="input"
-      />
-      <button 
-        className="btn" 
-        onClick={saveItem}
-      >
-        Сохранить
-      </button>
+  return (
+    <div className="notes-wrapper">
+      <div className="notes-field">
+        <input 
+          placeholder="Добавить напоминание"
+          value={getValue('text')}
+          onChange={event => changeItem('text', event)}
+          className="notes-field__input"
+        />
+        <button className="notes-field__btn-save" onClick={saveItem}>
+          Сохранить
+        </button>
+      </div>
+      <div>
+        <Note 
+          notes={notes} 
+          editUnix={editUnix} 
+          setEditId={setEditId} 
+          remItem={remItem}
+        />
+      </div>
     </div>
-    <div>
-      <Note 
-        notes={notes} 
-        editUnix={editUnix} 
-        setEditId={setEditId} 
-        remItem={remItem}
-      />
-    </div>
-  </div>;
+  )
 }
-
 
 export default Notes;

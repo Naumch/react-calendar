@@ -31,36 +31,12 @@ button {
 	margin: 60px auto;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 580px) {
   .wrap {
     flex-direction: column;
     align-items: center;
+    margin: 40px auto;
   }
-}
-
-.btn {
-	align-self: end;
-	padding: 10px 30px;
-	margin: 10px 0 20px; 
-	border-radius: 4px;
-	font-size: 14px;
-	color: #fff;
-	background-color: #3775dd;
-  transition: .5s;
-}
-
-.btn:hover {
-	background-color: #3169c6;
-}
-
-.input {
-  padding: 10px;
-  border: 1px solid #9facba;
-  border-radius: 4px;
-  transition: .3s box-shadow;
-	outline: none;
-  transition: .5s;
-  cursor: pointer;
 }
 
 .calendar-wrapper {
@@ -129,29 +105,79 @@ button {
   margin-left: 50px;
 }
 
-@media (max-width: 610px) {
-  .notes-wrapper {
-    margin-left: 10px;
-  }
-}
-
 @media (max-width: 620px) {
   .notes-wrapper {
-    width: 80%;
-    margin-top: 20px;
+    margin-left: 20px;
   }
 }
 
-.notes__field {
+@media (max-width: 580px) {
+  .notes-wrapper {
+    width: 280px;
+    margin: 20px;
+  }
+}
+
+.notes-field {
   display: flex;
   flex-direction: column;
 }
 
-.notes__item {
+.notes-field__input {
+  padding: 10px;
+  border: 1px solid #9facba;
+  border-radius: 4px;
+	outline: none;
+  transition: .5s;
+}
+
+.notes-field__input:hover {
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.notes-field__btn-save {
+	align-self: end;
+	padding: 10px 30px;
+	margin: 10px 0 20px; 
+	border-radius: 4px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #3775dd;
+  transition: .5s;
+}
+
+.notes-field__btn-save:hover {
+	background-color: #3169c6;
+}
+
+.notes-item {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #9facba;
   width: 100%;
   padding: 10px;
   background-color: #f8f9fb;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
+
+.notes-item__text {
+  max-width: 420px;
+  margin: 8px;
+}
+
+.notes-item__btn-edit {
+  cursor: pointer;
+  color: #3775dd;
+}
+
+.notes-item__btn-delete {
+  transition: .5s;
+  font-size: 1rem;
+}
+
+.notes-item__btn-delete:hover {
+  transform: scale(1.5);
+}
+
+
