@@ -1,4 +1,5 @@
 import React from "react";
+import Note from "./Note";
 
 function Notes({ editUnix, notes, setNotes, editId, setEditId, obj, setObj, getInitObj }) {
 
@@ -50,21 +51,12 @@ function Notes({ editUnix, notes, setNotes, editId, setEditId, obj, setObj, getI
       </button>
     </div>
     <div>
-      {notes.map(note => {
-        if (note.unix === editUnix) {
-          return (
-            <div className="notes__item" 
-              key={note.id} 
-              onClick={() => setEditId(note.id)}
-            >
-              <span>{note.text}</span>
-              <button onClick={() => remItem(note.id)}>&#128937;</button>
-            </div>
-          )
-        } else {
-          return null;
-        }
-      })}
+      <Note 
+        notes={notes} 
+        editUnix={editUnix} 
+        setEditId={setEditId} 
+        remItem={remItem}
+      />
     </div>
   </div>;
 }
