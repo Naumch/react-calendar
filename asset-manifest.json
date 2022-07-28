@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-calendar/static/css/main.6f12be47.css",
+    "main.js": "/react-calendar/static/js/main.156c0d8d.js",
+    "index.html": "/react-calendar/index.html",
+    "main.6f12be47.css.map": "/react-calendar/static/css/main.6f12be47.css.map",
+    "main.156c0d8d.js.map": "/react-calendar/static/js/main.156c0d8d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f12be47.css",
+    "static/js/main.156c0d8d.js"
+  ]
+}
